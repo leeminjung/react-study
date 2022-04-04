@@ -327,5 +327,146 @@ class 어쩌구 { }하시고 중괄호 안에 담고 싶은 데이터나 함수 
 class를 만들어두시면 class가 가지고 있는 데이터를 그대로 복사해서 사용할 수 있는 object를 쉽게 만들 수 있습니다.
 혹은 class가 가지고 있는 데이터를 그대로 복사해서 사용할 수 있는 class도 쉽게 만들 수 있고요. (extends문법을 씁니다)
 	
-22-03-28
+-------------------------------------------------------------------------------------------------------------------
+
+react 쇼핑몰 프로젝트
+작업하던것이 있다면 컨트롤+C눌러서 종료하고
+1. 작업폴더 에디터로 오픈 (여기서 난 react class)
+2. 터미널에 npx create-react-app shop
+3. shop 이라는 프로젝트 에디터로 오픈
+
+yarn이용하기
+구글에 yarn 1.2치고 들어가서 설치. (라이브러리 설치할때 유용한 툴.)
+npm run start 혹은 yarn설치후 프로젝트 만들었으면 yarn start 가능
+
+HTML/CSS 디자인 쌩코딩이 싫다면
+bootstrap이용하기 (getbootstrap.com)
+
+설치하는 튜토리얼보고 설치하면 됌.
+react경우는 reactbootstrap을 이용하는 경우가 많음. 
+React-bootstrap 설치하기
+터미널에 (윈도우나 맥에 스크립트사용할수없다면 앞에 sudo붙이고)
+npm install react-bootstrap bootstrap 
+
+또는 yarn add react-bootstrap bootstarp
+
+글고 css란에 있는 link코드 복사해서 index.html에 복붙하면 사용할 준비 완료.
+
+public에도 자료보관 가능.
+src에 넣은 파일은 	파일명 변경 + 압축됨
+
+원하는 UI를 검색해서 복붙하면 디자인 필요없이 개발 끝 (실은 react-bootstrap 사이트를 써야하지만)
+
+내가쓸 컴포넌트들을 import해와야 사용이 가능하다.Getting Start보면 있음
+import { 컴포넌트 대문자로 된거 다 쓰기 } from 'react-bootstrap';
+
+📍bootstrap문법에 모바일버전, PC버전에 따라 배치를 다르게 하고픈 경우
+<div className="container">
+  <div className="row">
+    <div className="col-md-4">안녕</div>
+    <div className="col-md-4">안녕</div>
+    <div className="col-md-4">안녕</div>
+  </div>
+</div>
+
+----------------------------------------------
+데이터가 너무 길경우 
+1.src폴더내에 data.js생성
+2. export default적고
+
+export default [
+    {
+        id : 0,
+        title : "White and Black",
+        content : "Born in France",
+        price : 120000
+    },
+
+    {
+        id : 1,
+        title : "Red Knit",
+        content : "Born in Seoul",
+        price : 110000
+    },
+
+    {
+        id : 2,
+        title : "Gray Yordan",
+        content : "Born in States",
+        price : 130000
+    }
+]
+
+복붙.
+
+📌파일 쪼갤 때 활용하는 import/export
+
+내보내기 : export default 변수명
+가져오기 : import 페이지에서 사용하고싶은 변수명 from 경로
+-> 그리고 쓰고싶은 곳에  {변수명}
+
+export default 는 보통 페이지 맨 마지막에 씁니다.
+export default 는 한번만 사용가능함. 두개 세개 (X)
+❓내보낼 변수가 많다면? 예를 들어서
+var name = 'Kim' ;
+var name2 = 'Park' ;
+두개다 유용하게 사용될것같음 . 그러면?
+export { 변수1, 변수2 }
+대신 import { 변수1,변수2} from 경로라고 해야함. (즉, 여러개 변수를 내보낼 경우
+그 변수명을 그대로 다 써줘야함 작명X)
+------------------------------------------------------------
+
+아까 import해온 데이터로 상품명 데이터바인딩해보자.
+반복적인 HTML요소가 많다면 반복문이나 component화 하기.
+1. component로 만들어 첨부하기
+2. component에 데이터바인딩 완료하기
+3. component를 반복문 돌리기.
+--------------------------------------------------
+[component 제박법 ]
+1. function 컴포넌트 이름(){}
+2. return (<div></div>)
+3. 필요한 곳에 <컴포넌트이름 />
+
+shoes라는 state는 부모 컴포넌트가 가지고 있음
+그걸 자식 컴포넌트가 사용하고싶으면
+props로 전송해줘야함.
+🌟<Product shoes={shoes}/>      //shoes라는 이름으로 {shoes}를 자식에게 보내줌
+
+function Product(props) {
+return( ~~~ )
+}
+
+---------------------------------------
+📌[props 전송법]
+1. <자식컴포넌트 보낼이름={전송할state} />
+2. function 자식컴포넌트(props){}
+3. props.보낼이름사용
+
+<Product />마다 다른 상품데이터 전달하기.
+   <Product shoes={ shoes[0] }/>
+   <Product shoes={ shoes[1] }/>
+   <Product shoes={ shoes[2] }/>
+
+ props.shoes[0].title 대신  props.shoes.title라고 쓰면 됨.
+
+-----------------------------------------------------------------
+반복문 사용! map( )활용!
+항상 괄호를 사용!
+
+    {
+      shoes.map((a,i) =>{
+        return <Product shoes = {shoes[i]} /> // {shoes[i]} 나 {a}나 똑같음. a는 하나하나의 데이터를 의미 , i는 데이터갯수 
+      })
+    }
+
+-----------------------------------------------------------------
+src=""에다가 데이터바인딩하려면?
+src={ } 이렇게하면 변수명 함수명 넣기 가능.
+텍스트 중간에 변수를 넣고싶으면
+'문자' +변수 +'문자'    //링크를 쪼개기!
+<img src={'https://codingapple1.github.io/shop/shoes'+ 변수+'.jpg'} width="100%" />
+=>      <img src={'https://codingapple1.github.io/shop/shoes'+ (props.i + 1) +'.jpg'} width="100%" /> 
+i는 부모컴포넌트에서 <Product shoes = {shoes[i]} i={i} /> 로 i를 쓸수있도록 보내기
+
+
 	

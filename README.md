@@ -275,18 +275,21 @@ input다루기 : 사용자가 입력한 글을 변수에 저장하는 법
 
 -----------------------------------------------------------------------
 리액트 예전문법!
-
+```
 class Profile extends React.Component {
   constructor(){
     super();
     this.state = {name : 'Kim' , age : 30}
   }
+	
+```
 
   // class안에다가 함수만들어서 핸들러 (onClick ..)에 적용가능 
   //단 state든, 함수든 무조건 앞에 this를 붙여줘야함.  this.changeName
   //setState어쩌구 에러가 뜨면 뒤에 .bind(this)써주면됌
   // 이유는 react가 this에 민감해서 자리를 찾지못하거나 그럴때 에러가 남
   //.bind(this) 함수를 쓰고싶지않다! 그러면 함수 만들때 애초에 에로우펑션으로 만듦,
+```
   changeName = () =>{
     this.setState( {name: 'Lee'} )
   }
@@ -302,6 +305,8 @@ class Profile extends React.Component {
   }
 
 }
+	
+```
 📍
 class : 변수/함수 보관하는 덩어리
 extends :오른쪽에 있는 놈의 성질을 물려받겠습니다.
@@ -328,8 +333,7 @@ class를 만들어두시면 class가 가지고 있는 데이터를 그대로 복
 혹은 class가 가지고 있는 데이터를 그대로 복사해서 사용할 수 있는 class도 쉽게 만들 수 있고요. (extends문법을 씁니다)
 	
 -------------------------------------------------------------------------------------------------------------------
-
-react 쇼핑몰 프로젝트
+쇼핑몰 프로젝트
 작업하던것이 있다면 컨트롤+C눌러서 종료하고
 1. 작업폴더 에디터로 오픈 (여기서 난 react class)
 2. 터미널에 npx create-react-app shop
@@ -373,6 +377,7 @@ import { 컴포넌트 대문자로 된거 다 쓰기 } from 'react-bootstrap';
 데이터가 너무 길경우 
 1.src폴더내에 data.js생성
 2. export default적고
+```
 
 export default [
     {
@@ -397,6 +402,7 @@ export default [
     }
 ]
 
+```
 복붙.
 
 📌파일 쪼갤 때 활용하는 import/export
@@ -468,5 +474,55 @@ src={ } 이렇게하면 변수명 함수명 넣기 가능.
 =>      <img src={'https://codingapple1.github.io/shop/shoes'+ (props.i + 1) +'.jpg'} width="100%" /> 
 i는 부모컴포넌트에서 <Product shoes = {shoes[i]} i={i} /> 로 i를 쓸수있도록 보내기
 
+반복시킨 HTML에는 key={ } 이게 꼭 필요합니다.
+
+{
+      shoes.map((a,i) =>{
+        return <Product shoes = {shoes[i]} i={i} key={i}/> // {shoes[i]} 나 {a}나 똑같음. a는 하나하나의 데이터를 의미 , i는 데이터갯수 i={i}로 자식컴포넌트에 i전달
+      })
+    }
+------------------------------------------------------------------------
+📌페이지 나누기 (라우팅)
+= react-router-dom 라이브러리 이용
+터미널에 라이브러리 설치.
+yarn add react-router-dom@5 
+또는 npm install react-router-dom@5
+
+그리고 react-router-dom 초기셋팅법
+1. index.js에다가 import { BrowserRouter } from 'react-router-dom'; 를 씀
+2. <BrowserRouter>를 써써<App />을 감싸주기.
+
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+이렇게 하면 라우터 셋팅 끝!
+/abc로 접속하면 이런페이지 보여주세요~
+/def로 접속하면 저런페이지 보여주세요~
+--> 라우터 라이브러리 기능임
+❓ <BrowserRouter> 대신 <HashRouter>를 쓸수 있는데,
+HashRouter를 쓰는 순간 url에 /#/이 추가가 됨.
+HashRouter : 라우팅 안전하게 할 수 있게 도와줌.
+BrowserRouter :라우팅을 리액트가 아니라 서버에게 요청할 수도 있어서 위험
+
+서버 : "어 그런페이지 없는데요?"할 수 있음
+서버에서 서버 라우팅 방지하는 API를 작성해둬야함
+💙Route를 만들어보자 (페이지를 나누자)
+1. 일단 import해옵니다.
+import { Link, Route, Switch } from 'react-router-dom'
+
+2. 
+/로 접속하면 메인페이지
+/detail로 접속하면 상품상세페이지 보이게
+
+<Route path="/">
+  <div>메인페이지예요</div>
+</Route>
+<Route path="/detail">
+  <div>디테일페이지에요</div>
+</Route>
+
+❤️ Route쓰는 다른 방법
+: HTML이 아니라 컴포넌트 하나를 그냥 깔끔하게 보여주고싶다면?
+<Route path="/어쩌구" component={Modal}></Route>
 
 	

@@ -604,3 +604,40 @@ import React, { useState } from 'react';
 ```	
 export default 변수명or함수명;
 ```
+
+📌페이지 이동하는 버튼만들기
+- 일단 <Navbar>안의 버튼에 href지우고
+import { Link, Route, Switch } from 'react-router-dom' 를 import했으니
+Link라는 속성 사용가능
+```
+<Link to="경로">버튼</Link>
+<Link to="/">Home</Link>
+```
+	
+📌페이지 이동시키는 다른 방법
+외워서 사용!
+1. useHistory라는 훅 import
+2. useHistory()훅 사용
+[상세내용]
+일단 import { useHistory }  from 'react-router-dom'
+리액트-라우터-돔에서 useHistory라는 라이브러리를 가져와서 사용할거기때문에 
+```
+let history = useHistory(); // useHistory를 변수에 담음
+```
+-> 💙방문기록 등을 저장해놓는 object가 생성이 되는거임!!
+
+💙useHistory는 react-router-dom v5이상, react v16.3이상 사용가능
+```
+history.goBack() //goBack() 함수를 사용! 
+<button onClick={ ()=>{ history.goBack() } }>뒤로가기</button>
+```
+	
+💟특정 경로로 이동시키려면?
+```
+history.push('/')  // -> '/' 경로로 이동시켜주세요
+```
+	
+📌Switch컴포넌트
+
+
+🌟Alt + shift + ↓ : 줄복사

@@ -1,4 +1,4 @@
-📍react 개발환경 설치!
+### 📍react 개발환경 설치!
 1. node.js 검색후 설치 ㄱ(최신버전 맥이나 윈도우버전 다똑같음) *이미설치되어있다해도 최신버전으로 설치 ㄱㄱ
 (주의) 현재 Node.js설치시 14버전이나 16버전 찾아서 설치하면됩니다. 17버전 금지
 2. 에디터 (visual studio code설치)
@@ -525,37 +525,38 @@ i는 부모컴포넌트에서 <Product shoes = {shoes[i]} i={i} /> 로 i를 쓸�
 ```
 
 📌페이지 나누기 (라우팅)
-= react-router-dom 라이브러리 이용
-터미널에 라이브러리 설치.
-yarn add react-router-dom@5 
+= react-router-dom 라이브러리 이용 <br>
+터미널에 라이브러리 설치. <br>
+yarn add react-router-dom@5 <br>
 또는 npm install react-router-dom@5
-
-그리고 react-router-dom 초기셋팅법
+<br>
+그리고 react-router-dom 초기셋팅법 <br>
 1. index.js에다가 import { BrowserRouter } from 'react-router-dom'; 를 씀
 2. <BrowserRouter>를 써써<App />을 감싸주기.
-
+```
     <BrowserRouter>
     <App />
     </BrowserRouter>
+```
 이렇게 하면 라우터 셋팅 끝!
 /abc로 접속하면 이런페이지 보여주세요~
 /def로 접속하면 저런페이지 보여주세요~
 --> 라우터 라이브러리 기능임
-❓ <BrowserRouter> 대신 <HashRouter>를 쓸수 있는데,
-HashRouter를 쓰는 순간 url에 /#/이 추가가 됨.
-HashRouter : 라우팅 안전하게 할 수 있게 도와줌.
-BrowserRouter :라우팅을 리액트가 아니라 서버에게 요청할 수도 있어서 위험
-
+❓ <BrowserRouter> 대신 <HashRouter>를 쓸수 있는데, <br>
+HashRouter를 쓰는 순간 url에 /#/이 추가가 됨. <br>
+HashRouter : 라우팅 안전하게 할 수 있게 도와줌.<br>
+BrowserRouter :라우팅을 리액트가 아니라 서버에게 요청할 수도 있어서 위험<br>
+<br>
 서버 : "어 그런페이지 없는데요?"할 수 있음
 서버에서 서버 라우팅 방지하는 API를 작성해둬야함
-💙Route를 만들어보자 (페이지를 나누자)
+💙Route를 만들어보자 (페이지를 나누자)<br>
 1. 일단 import해옵니다.
 ```
 import { Link, Route, Switch } from 'react-router-dom'
 ```
 2. 
-/로 접속하면 메인페이지
-/detail로 접속하면 상품상세페이지 보이게
+/로 접속하면 메인페이지<br>
+/detail로 접속하면 상품상세페이지 보이게<br>
 ```
 <Route path="/">
   <div>메인페이지예요</div>
@@ -564,15 +565,17 @@ import { Link, Route, Switch } from 'react-router-dom'
   <div>디테일페이지에요</div>
 </Route>
 ```
-❤️ Route쓰는 다른 방법
+	
+### ❤️ Route쓰는 다른 방법
+	
 : HTML이 아니라 컴포넌트 하나를 그냥 깔끔하게 보여주고싶다면?
 ```
 <Route path="/어쩌구" component={Modal}></Route>
 ```
 	
-Q. /detail 경로로 접속해도 / 경로내용이 보이는 이유?
-A. 매칭되는 것들은 다 보여줌 ( /detail 에 /도 매칭될수있으니까..)
-그것이 싫다?
+Q. /detail 경로로 접속해도 / 경로내용이 보이는 이유?<br>
+A. 매칭되는 것들은 다 보여줌 ( /detail 에 /도 매칭될수있으니까..)<br>
+그것이 싫다?<br>
 exact라는 속성을 추가하면 경로가 일치할 때만 보여줌
 
 ```
@@ -584,16 +587,16 @@ exact라는 속성을 추가하면 경로가 일치할 때만 보여줌
 </Route>
 ```
 💙 <React Router 특징>
-페이지마다 다른 HTML파일이 아닙니다.
+페이지마다 다른 HTML파일이 아닙니다.<br>
 (index.html하나만 있음)
-HTML내부의 내용을 갈아치워서 다른페이지처럼 보여주는것
+HTML내부의 내용을 갈아치워서 다른페이지처럼 보여주는것<br>
 (라우팅 시켜서 html을 갈아치워 다른 html페이지를 보여주는것처럼 흉내내고있는것임)
 
-상세페이지를 컴포넌트화 하기
-- 근데 다른파일로 빼보자.(import/export)
-파일이름은 아무렇게 지어도 상관은 없는데,
-보통 컴포넌트이름으로 파일명 생성 (첫글자 대문자)
-
+상세페이지를 컴포넌트화 하기<br>
+- 근데 다른파일로 빼보자.(import/export)<br>
+파일이름은 아무렇게 지어도 상관은 없는데,<br>
+보통 컴포넌트이름으로 파일명 생성 (첫글자 대문자)<br>
+<br>
 🌟리액트 컴포넌트 파일을 만들때 컴포넌트 파일에 리액트 기본 문법인
 ```
 import React, { useState } from 'react';
@@ -614,7 +617,8 @@ Link라는 속성 사용가능
 <Link to="/">Home</Link>
 ```
 	
-📌페이지 이동시키는 다른 방법
+### 📌페이지 이동시키는 다른 방법
+	
 외워서 사용!
 1. useHistory라는 훅 import
 2. useHistory()훅 사용
@@ -637,7 +641,8 @@ history.goBack() //goBack() 함수를 사용!
 history.push('/')  // -> '/' 경로로 이동시켜주세요
 ```
 	
-📌Switch컴포넌트
+### 📌Switch컴포넌트
+	
 여러개가 맞아도 하나만 보여주세요~
 ```
 <Route path="/:id"></Route>  // /모든문자 라는 경로를 의미
@@ -646,4 +651,47 @@ history.push('/')  // -> '/' 경로로 이동시켜주세요
 // 중복이 발생하면 그중에 맨 위에것만 보여줘라. 
 // Switch안에 담았더니 Route 들이 하나씩만 보임
 
+
+### 📌[props문법]
+	
+1. 보낼이름={state이름}
+2. 하위컴포넌트에선 {props.보낸이름}
+<Detail />컴포넌트에 상품명 데이터바인딩좀 해봅시다.
+
+Detail.js에다가 let [shoes, setShoes] = useState(Data); 선언해서 쓰면 되지않나?싶을텐데
+보통, 중요한 데이터들은 App.js에 두고 가져다 쓰는것이 국.룰!임
+App컴포넌트에 보관하던지 혹은 redux파일에 보관해서 쓰기!
+
+### 📌 URL활용 :id
+```
+<Route path="/detail/:id">  
+``` 
+/:id 는 아무문자나 받겠다는 URL작명법.<br> 
+뒤에 어떤 문자가 오던간에 작성한 페이지로 가겠단뜻
+1. 콜론 뒤에 맘대로 작명 :id :num :a
+2. 여러개 사용가능 /detail/:id/:id2
+
+
+이제 URL이 /detail/2든 /detail/3이든 디테일 텀포넌트가 보이도록 설정이 되었는데
+URL이 /detail/:id라면 상품 {props.shoes[:id자리에 있던 숫자].title} 가 되도록 가능한지!그것은 바로,
+import { useHistory }  from 'react-router-dom' 에 useParams를 추가 <br>
+	
+### 📌라우터의 usePrams 훅
+
+```
+ import { useHistory, useParams }  from 'react-router-dom'
+
+function Detail(props){
+ let {id} = useParams(); // :id가 사용자가 입력한값에따라 바뀌는 값이 저기에 저장됌. id가 2라면  let {id} = useParams();의 id값이 2가됌.
+                         // let {id,id2..} =usePrams(); 가능
+return(
+  <h4 >{props.shoes[id].title}</h4>
+  <p>{props.shoes[id].content}</p>
+  <p>{props.shoes[id].price}원</p>
+)
+}
+
+```
+
+	
 🌟Alt + shift + ↓ : 줄복사

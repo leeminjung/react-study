@@ -657,29 +657,37 @@ history.push('/')  // -> '/' 경로로 이동시켜주세요
 1. 보낼이름={state이름}
 2. 하위컴포넌트에선 {props.보낸이름}
 <Detail />컴포넌트에 상품명 데이터바인딩좀 해봅시다.
-
-Detail.js에다가 let [shoes, setShoes] = useState(Data); 선언해서 쓰면 되지않나?싶을텐데
+여깃 매우 중요한 질문:
+Q. 그냥 애초에 shoes라는 state같은 걸 Detaile컴포넌트에다가 만들면 되는거 아닙니까? 그럼 props 귀찮게 안써도 될텐데.<br>
+A. 좋은방법입니다. 근데 React,Angular, Vue이런거 쓸 때 항상 염두에 두셔야하는게
+데이터는 항상 "위에서 아래로 흘러야합니다."
+상위텀포넌트가 중요 데이터를 다 가지고 있어야합니다. <br>
+그리고 하위컴포넌트는 데이터를 항상 props로 받아서 써야합니다. <br>
+왜냐면, 안그러면 데이터를 역방향으로 전달시킨다면 props보다 훨씬 귀찮은 문제들이 생기니까요.<br>
+그러니 state만들 땐 state를 필요로 하는 컴포넌트들 중 가장 최상위 컴포넌트에 보관해야합니다.
+<br>
 보통, 중요한 데이터들은 App.js에 두고 가져다 쓰는것이 국.룰!임
 App컴포넌트에 보관하던지 혹은 redux파일에 보관해서 쓰기!
-
 ### 📌 URL활용 :id
 ```
 <Route path="/detail/:id">  
 ``` 
-/:id 는 아무문자나 받겠다는 URL작명법.<br> 
-뒤에 어떤 문자가 오던간에 작성한 페이지로 가겠단뜻
-1. 콜론 뒤에 맘대로 작명 :id :num :a
-2. 여러개 사용가능 /detail/:id/:id2
+/:id 는 아무문자나 받겠다는 URL작명법. 
+:id 자리에 아무 문자나 입력하면 <Detail>컴포넌트를 보여주세요~입니다.
+1. id라는 부분은 함수 파라미터처럼 자유롭게 작명하면 됩니다. :id :num :a
+2. 파라미터는 2개 3개 몇개든 추가 사용가능 /detail/:id/:name 이런식도 가능
 
 
 이제 URL이 /detail/2든 /detail/3이든 디테일 텀포넌트가 보이도록 설정이 되었는데
 URL이 /detail/:id라면 상품 {props.shoes[:id자리에 있던 숫자].title} 가 되도록 가능한지!그것은 바로,
-import { useHistory }  from 'react-router-dom' 에 useParams를 추가 <br>
+import { useHistory }  from 'react-router-dom' 에 useParams를 추가<br>
 	
 ### 📌라우터의 usePrams 훅
 
 ```
- import { useHistory, useParams }  from 'react-router-dom'
+(Detail.js파일)
+	
+import { useHistory, useParams }  from 'react-router-dom'
 
 function Detail(props){
  let {id} = useParams(); // :id가 사용자가 입력한값에따라 바뀌는 값이 저기에 저장됌. id가 2라면  let {id} = useParams();의 id값이 2가됌.
@@ -692,6 +700,97 @@ return(
 }
 
 ```
+shoes데이터의 순서가 바뀐다면 상세페이지도 이상해짐
+정렬기능을 실행하면 shoes라는 state가 변경됨
+[ Red Knit, White and Black, Grey Yordan ]
+그럼 이제/detail/0접속시 Red Keit가 뜨게?
+- 상품의 영구번호를 활용하자. id
+"shoes에서 0번째 순서의 타이틀을 가져와라~ "가 아닌
+"전체자료중에 영구번호 0을 가진 데이터의 제목~"
+
+현재shoes라는 상품데이터들 안엔 {id:0}이런 영구 번호가 있습니다.
+그럼 현재 /:id 자리에 입력한 값과 영구번호가 같은 {상품데이터}를 찾아서 데이터 바인딩해주면 되겠습니다.
+```
+import React from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+
+function Detail(props){
+	let {id} = useParams();
+   	let 찾은상품 = props.shoes.find(function(상품){
+		return 상품.id = id
+})
+return( ... )
+}
+```
+=
+```
+let 찾은상품 = props.shoes.find(x => x.id == id);
+```
+💙find()라는 ES6 신문법이 있습니다. Array안에서 원하는 자료를 찾고싶을 때 사용합니다.
+filter()함수, 그냥 반복문 이런거 써도 상관 없음.
+
+1. find()는 array 뒤에 붙을수 있으며, 안에 콜백함수가 들어갑니다.
+2. 콜백함수 내의 파라미터는 (제가 상품이라고 적은거) array안에 있던 하나하나의 데이터를 의미
+3. return 오른쪽엔 조건식을 적을수 있습니다. 이게 참인 데이터만 새로운 변수에 저장해줍니다.
+4. 조건식엔 그리고 그걸 현재 URL의 /:id에 적힌 값과 상품의 영구번호 (상품.id)가 같은지 비교하고 있는겁니다.
+
+그래서 /detail.0으로 접속시 찾은 상품이라는 변수를 출력해보면 아마 영구번호가 id :0인 데이터가 나올겁니다.
+/detail.1로 접속시 찾은상품이라는 변수는 영구번호가 id : 1인 데이터일겁니다.
+그래서 찾은상품이라는 변수를 이용해서 상품면, 가격 HTML부분에 데이터바인딩했을 뿐입니다.
+이렇게하면 성공!
+
+지금은 프론트엔드에서 모든 데이터를 다루고있어 어려운 + 반복스러운 find()함수를 사용한 것이지만
+실제 개발할 뗀 그냥 서버에 id:0인 상품데이터를 Ajax로 요청하는 경우가 많을것입니다.
+그럼 저렇게 find()어쩌구를 쓰는게 아니라 ajax요청하는 코드가 들어가있겠고
+ajax요청을 성공하면 {} 중괄호 안에 깔끔하게 상품데이터가 하나만 딱 들어올 것 같군요.
+
+
+### 📌 styled-cpmponents를 이용한 class없는 CSS스타일링
+
+- 실제로 개발하다보면 컴포넌트양이 많아져서 CSS작성 고민이 많아짐
+- 실수로 className을 같게만든경우 난감할수있음.
+<br>
+그래서 class선언없이 컴포넌트에 CSS를 직접 장착 <br>
+(CSS in JS라고도 합니다)<br>
+
+1. 터미널을 키고 yarn add styled-components 또는 npm install styled-components <br>
+-> 스타일드 컴포넌트 라이브러리 자유롭게 사용가능해짐! <br>
+2. 원하는 컴포넌트에 import해줌 <br>
+```
+import styled from 'styled-components';
+```
+3.이제 컴포넌트를 하나 만든다고 생각해도 됨.
+```
+let 박스 = styled.div ` padding : 20px `
+```
+-> css를 입혀놓은 컴포넌트 
+
+4. 만든것을 이제 <박스> </박스> 이렇게 사용하면 됌. <br>
+
+styled-components 유용한 문법하나 더 <br>
+- 비슷한 UI가 몇개 필요한 경우? <br>
+만약 색깔만 다른 제목이 여러개 필요하다면? <br>
+```
+`글자 ${변수명} 글자`
+```
+```
+ex) `color : ${ props => props.색상 }`
+
+<제목 색상={'red'}> Detail </제목>
+또는 <제목 색상="red"> Detail </제목>
+```
+사실상 class짓거나 style넣으면 되는걸 굳이.. 한다 생각되긴하지만 <br>
+가장큰 장점: 컴포넌트 많아지면 class겹칠 일이 줄어들음
+<br>
+### 📌아니면 CSS대신 SASS를 쓰자! (SASS 총정리)
+: CSS를 프로그래밍언어스럽게 작성가능한 Preprocesssor <br>
+설치하는 방법 + 간단한 문법 <br>
+[설치방법] <br>
+yarn add node-sass 또는
+npm install node-sass
+<br>
+브라우저는 SASS문법 몰라요 SASS로 작성한 파일을 다시 CSS로 컴파일해야함
+<br>
 
 	
 🌟Alt + shift + ↓ : 줄복사

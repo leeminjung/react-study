@@ -794,3 +794,8 @@ npm install node-sass
 
 	
 🌟Alt + shift + ↓ : 줄복사
+🌟 ctrl + K -> ctrl + C : 드래그전체 /주석
+🌟 ctrl + K -> ctrl + U : 주석 삭제
+🌟 Alt + shift + A :  드래그전체 /**/주석
+🌟 Ctrl + Enter :커서 아래 행 빈줄 생성
+🌟 Ctrl + N(숫자) :화면 분할 창 위치 포커싱 (★)

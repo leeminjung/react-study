@@ -793,6 +793,155 @@ npm install node-sass
 <br>
 
 	
+SASS문법을 쓰고싶다면 .css파일을 .scss로 바꾸기
+그리고 import './Detail.scss'
+### ❤️SASS문법
+- 변수에 데이터를 저장해서 쓰자
+- @import 파일경로
+- 셀렉터 대신 쓰는 nesting
+- 복붙하지말고 @extend
+- 함수는 @mixin / @include
+
+1. 변수에 데이터를 저장해서 쓰자
+```
+(Detail.scss파일)
+$메인칼라 : #ff0000;
+
+.red {
+     color : $메인칼라 ;
+}
+```
+2. @import 파일경로
+- 모든 페이지에 필요한 CSS reset 이런것들 <br>
+ex) 모든페이지에 기본적으로 body{margin : 0;} div{box-sizing: border-box;} 적용시키고자 한다!하면 <br>
+따로 reset.scss파일로 만들어 붙이고 import해와서 사용!
+```
+(reset.scss파일)
+
+body{
+    margin : 0;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+(Detail.scss파일)
+
+@import './reset.scss';
+
+```
+🌟보통 이런 import용 파일들은 _ 를 붙여서 파일명을 작명하고 첨부함( _reset.scss )
+
+3. 셀렉터 대신쓰는 nesting 
+```
+div.container h4 {
+	color : blue;
+}
+div.container p {
+	color : green;
+}
+
+//대신에 SASS문법을 적용하여 사용하면?
+div.container {
+	h4 {
+	color : blue;
+}
+	p {
+	color : green;
+}
+}
+
+```
+
+4. 복붙하지말고 @extend
+```
+(detail.sass파일)
+
+.my-alert {
+    background: #eeeeee;
+    padding : 20px;
+    border-radius:  5px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+}
+
+.my-alert2 {
+    @extend .my-alert;
+    background: #ffe591;
+}
+// @extend .my-alert; 는
+// .my-alert에 있는 모든 속성을 이자리에 붙여넣어주세요.
+```
+5. 함수는 @mixin / @include
+```
+(detail.scss파일)
+@mixin 함수(){
+    background: #eeeeee;
+    padding : 20px;
+    border-radius:  5px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+} 
+// @mixin으로 함수를 만들고 그걸 @include로 가져다 씀
+
+.my-alert {
+@include 함수()
+}
+
+```
+### 📌<Link>태그 에러 해결하기
+```
+<Nav.Link ><Link to="/detail">Detail</Link></Nav.Link>를 
+<Nav.Link as={Link}  to="/">Detail</Nav.Link> 이런식으로 쓰면 에러해결. 
+```
+
+### 📌Lifecycle Hook
+🌟Hook으로 컴포넌트의 인생 중간중간에 뭔가 명령을 줄 수 있음 <br>
+e.g) <Detail>등장 전에 이것좀 해주세요 <br>
+(원래는 class컴포넌트들만 사용가능) <br>
+
+```
+class Detail2 extends React.Component {
+
+  componentDidMount(){ // Detail2컴포넌트가 등장(Mount)되었을때 실행할 코드~
+		//Ajax같은 것도 이런곳에 자주 사용
+  }
+  componentWillUnmount(){ // Detail2컴포넌트가 빠이빠이(Unmount)되기 직전에 실행할 코드~
+ 
+  }
+
+}
+```
+### 📌useEffect 훅
+컴포넌트가 mount 되었을때 <br>
+컴포넌트가 update 될 때 <br>
+특정 코드를 실행할 수 있음 <br>
+->해당 페이지가 렌더링될때 useEffect안에 코드가 실행됨 <br>
+<br>
+💟Q. 2초후에 alert창이 사라지게 만들고 싶다면? <br>
+ let 타이머 = setTimeout(()=>{실행할 코드}, 2000) 사용! <br>
+(setTimeout은 보통 변수에 저장해서 씀!) <br>
+<br>
+💟Q.컴포넌트페이지가 사라질때 특정 코드를 실행시켜주고싶다면? = Unmount될때 <br>
+```
+useEffect(()=>{
+	return function 어쩌구(){ 실행할 코드 ~~~~}
+})
+```
+💟Q. 여러개를 사용하고싶다면? <br>
+useEffect는 여러개 사용해도 무관. 대신 적은 순서대로 실행됨.<br>
+```
+useEffect(()=>{
+})
+useEffect(()=>{
+})
+
+```
+	
+	
 🌟Alt + shift + ↓ : 줄복사     <br>
 🌟 ctrl + K -> ctrl + C : 드래그전체 /주석  <br>
 🌟 ctrl + K -> ctrl + U : 주석 삭제  <br>

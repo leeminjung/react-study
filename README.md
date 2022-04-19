@@ -922,9 +922,10 @@ class Detail2 extends React.Component {
 ->해당 페이지가 렌더링될때 useEffect안에 코드가 실행됨 <br>
 <br>
 💟Q. 2초후에 alert창이 사라지게 만들고 싶다면? <br>
- let 타이머 = setTimeout(()=>{실행할 코드}, 2000) 사용! <br>
-(setTimeout은 보통 변수에 저장해서 씀!) <br>
-<br>
+```
+ useEffect(()=>{ let 타이머 = setTimeout(()=>{실행할 코드}, 2000) }); 
+//(setTimeout은 보통 변수에 저장해서 씀!)
+```
 💟Q.컴포넌트페이지가 사라질때 특정 코드를 실행시켜주고싶다면? = Unmount될때 <br>
 ```
 useEffect(()=>{

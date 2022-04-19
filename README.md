@@ -965,6 +965,35 @@ return(
 }
 ```
 	
+useEffect : 컴포넌트 등장/ 업데이트시 실행됨 <br>
+여기서 문제, <br>
+-input에 뭔가 입력하면 <Detail>재렌더링(=업데이트)이 일어남 <br>
+useEffect가 입력할때마다 실행이되는데 처음 렌더링할때만 실행하고 싶다면?
+```
+ useEffect(()=>{
+    let 타이머 =setTimeout(()=>{ alert변경(false) },2000)
+    console.log("안녕")
+  },[alert]);
+
+// ,[실행조건]
+// ,[alert] <- useState인 alert라는 state가 변경될때만 useEffect 실행하라는 뜻
+```
+
+💙useEffect는 원래 업데이트될 때 항상 실행됩니다. 실행조건을 넣어서 특정 state가 변경될깨만 실행해주세요~ 할수있음
+💙 그 실행조건(state)이 useEffect코드보다 위에 있어야함!!
+
+### 📌 setTimeout 이런거 쓸 때 주의점
+- 타이머 해제 스킬 return 뒤에는 컴포넌트가 사라질때 쓰는건데 안전하게 타이머 해제를 해놓기.그래야 코드가 나중에 꼬이지 않음 <br>
+ return () => { clearTimeout(타이머) }
+
+```
+useEffect(()=>{
+    let 타이머 =setTimeout(()=>{ alert변경(false) },2000)
+    return () => { clearTimeout(타이머) }
+  },[]);
+```
+
+	
 🌟Alt + shift + ↓ : 줄복사     <br>
 🌟 ctrl + K -> ctrl + C : 드래그전체 /주석  <br>
 🌟 ctrl + K -> ctrl + U : 주석 삭제  <br>

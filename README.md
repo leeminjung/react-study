@@ -941,7 +941,29 @@ useEffect(()=>{
 })
 
 ```
-	
+💟 alert창 2초후에 사라지게하는 방법 답
+```
+(detail.js파일)
+
+function Detail(props){
+useEffect(()=>{
+ let 타이머 = setTimeout(()=>{},2000)
+});
+
+let [alert, alert변경] = useState(true);
+
+return(
+
+{
+	alert === true
+	?(<div className="mt-alert2">
+	<p>재고가 얼마 남지 않았습니다.</p>
+	</div>)
+	: null
+}
+)
+}
+```
 	
 🌟Alt + shift + ↓ : 줄복사     <br>
 🌟 ctrl + K -> ctrl + C : 드래그전체 /주석  <br>

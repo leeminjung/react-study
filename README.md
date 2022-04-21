@@ -992,7 +992,8 @@ useEffect(()=>{
     return () => { clearTimeout(타이머) }
   },[]);
 ```
-
+### 📌 Ajax
+- 서버에 새로고침없이 요청을 할 수 있게 도와줌
 	
 🌟Alt + shift + ↓ : 줄복사     <br>
 🌟 ctrl + K -> ctrl + C : 드래그전체 /주석  <br>

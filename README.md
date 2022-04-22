@@ -1,5 +1,5 @@
 ### 📍react 개발환경 설치!
-1. node.js 검색후 설치 ㄱ(최신버전 맥이나 윈도우버전 다똑같음) *이미설치되어있다해도 최신버전으로 설치 ㄱㄱ
+1. node.js 검색후 설치 ㄱ(최신버전 맥이나 윈도우버전 다똑같음) *이미설치되어있다해도 최신버전으로 설치.
 (주의) 현재 Node.js설치시 14버전이나 16버전 찾아서 설치하면됩니다. 17버전 금지
 2. 에디터 (visual studio code설치)
 3. 작업할 공간을 만들어줌! 문서어디든..  react class라는 이름
@@ -9,70 +9,74 @@
 7. 코드짠걸 미리보기 띄우기 : 터미널열어서 npm start
 
 (과정 설명)
-nodejs 왜 설치했는가? create-react-app 라이브러리를 사용해야하기 때문
-nodejs를 깔면 npm이라는 툴 같은게 딸려옴 (라이브러리 설치를 쉽게쉽게 도와주는 아이임. 부트스트랩이라던지 제이쿼리등등)
+nodejs 왜 설치했는가? create-react-app 라이브러리를 사용해야하기 때문 <br>
+nodejs를 깔면 npm이라는 툴 같은게 딸려옴 (라이브러리 설치를 쉽게쉽게 도와주는 아이임. 부트스트랩이라던지 제이쿼리등등) <br>
 npm으로 create-react-app이라는 라이브러리도 쉽게 설치가능하게 됨
-
+<br>
 메인페이지는 app.js임.
-
+<br>
 App.js는 메인페이지에 들어갈 html을 짜는곳! 실제 메인페이지는 어디있느냐 -> public에 index.html페이지가 하나있는데 그거임.
-
-
-App.js -------------> index.html
-            index.js
-
-
+<br>
+<br>
+App.js -------------> index.html <br>
+................. index.js	<br>
+<br>
+<br>
 *📍 index.js가 app.js 내용을 index.html에 박아주는 역할을 하고,
 index.js에 보면 document.getElementById('root')가 그 역할을 함
-
-node_modules : 라이브러리 모은 폴더
-public : static파일 보관함
-src : 소스코드 보관함 -> 실질적 코드 작성부분
-
+<br>
+node_modules : 라이브러리 모은 폴더 <br>
+public : static파일 보관함 <br>
+src : 소스코드 보관함 -> 실질적 코드 작성부분 <br>
+<br>
 *📍 JSX문법? HTML처럼생긴 JSX.
-리액트에서는 html대신 jsx문법을 사용( 대용이라고 생각)
-
-class (x) className (o)
-
-
-📍리액트를 쓰는 이유
+리액트에서는 html대신 jsx문법을 사용( 대용이라고 생각) <br>
+<br>
+class (x) className (o) <br>
+<br>
+<br>
+### 📍리액트를 쓰는 이유
 1. 데이터 바인딩 쉽게할수 있음 (react, Vue, Angular 도 가능)
+```
 let posts = '강남 고기 맛집';
 document.getElementById().innerHTML = ' '?
+```
 
--->전통적인 자바스트립트 데이터 바인딩인데 , 리액트나 뷰 앵귤러의 JSX문법을 사용할 경우 괄호만 사용해주면 쉽게 바인딩할수 있음
+-->전통적인 자바스트립트 데이터 바인딩인데 , 리액트나 뷰 앵귤러의 JSX문법을 사용할 경우 괄호만 사용해주면 쉽게 바인딩할수 있음 <br>
 -->{변수명,함수 등}
-
+```
  let posts ='강남 고기맛집';
 
 return (
 <h4>{ posts }</h4>
 
 )
+```
 
-이미지를 넣고싶을 경우?
-같은폴더에 이미지를 넣고 import로 가져온후 (ex. import logo from './logo.svg';)
-<img src={logo}/>해줌
-
+이미지를 넣고싶을 경우? <br>
+같은폴더에 이미지를 넣고 import로 가져온후 (ex. import logo from './logo.svg';) <br>
+<img src={logo}/>해줌 <br>
+<br>
 2. src,id, href등의 속성에도 { 변수명, 함수 등}
-
+<br>
 3. JSX에서 style속성 집어넣을 때
-
+<br>
 style ={object 자료형으로 만든 스타일}
-
-ex. <div style={ {color : ' blue'} }> 개발 blog </div>
-camelCase 작명관습에 따라 속성명을 바꿔줘야함. font-size (x) fontSize (o)
-(하지만 귀찮으니 className 쓰셈)
-
-
-📍데이터는 
+<br>
+ex. <div style={ {color : ' blue'} }> 개발 blog </div> <br>
+camelCase 작명관습에 따라 속성명을 바꿔줘야함. font-size (x) fontSize (o) <br>
+(하지만 귀찮으니 className 쓰셈) <br>
+<br>
+<br>
+### 📍데이터는 
 1. 변수에 넣거나
 2. state에 넣거나
-
+<br>
 리액트안에있는 내장함수를 쓰겠다. import React, { useState } from 'react';
+<br>
+<br>
 
-
-📌(참고) ES6 destructuring 문법
+### 📌(참고) ES6 destructuring 문법
 ```
 var [a,b] = [10,100]; // array, object에 있던 자료를 변수에 쉽게 담고 싶을 때
 let [a,b] = useState('남자코트 추천')
@@ -85,16 +89,16 @@ let [ 글제목, 글제목변경 ] = useState('남자 코트 추천');
 return ( <h3> { 글제목 } </h3> )
 ```
 
-📍 state는
+### 📍 state는
 1. 변수 대신 쓰는 데이터 저장공간
 2. useState( )를 이용해 만들어야함.
 3. 문자, 숫자,array,object 다 저장가능
 
-📍 state에 데이터 저장해놓는 이유: 웹이 App처럼 동작하게 만들고싶어서 ㅇㅇ
+### 📍 state에 데이터 저장해놓는 이유: 웹이 App처럼 동작하게 만들고싶어서 ㅇㅇ
 자주바뀌는,중요한 데이터를 변수말고 state로 저장해서 쓰세요
 
 
-📍 터미널에 뜨는 warning 에 eslint를 보기싫으면 
+### 📍 터미널에 뜨는 warning 에 eslint를 보기싫으면 
 상단에 /* eslint-disable */ 작성!
 
 ```
@@ -104,12 +108,12 @@ onClick={ ( ) => {실행할 내용} }      // 콜백함수를 써도됌.
 
 ```
 
-수정된 [데이터]를 만듦 
-근데 state를 deep copy해서 수정하세요.
-📍object나 array경우 deep copy사용!!
-📍deep copy : 값공유 X ,서로 독립적인 값을 가지는 복사 
-📍 ... : 스프레드 오퍼레이터 라는 ES6문법(중괄호 대괄호 다 제거해주고 값을 복사한후 다시 중괄호에 담는거임 )
-	따라서, 별개의 array가 되는거임.
+수정된 [데이터]를 만듦  <br>
+근데 state를 deep copy해서 수정하세요.<br>
+📍object나 array경우 deep copy사용!! <br>
+📍deep copy : 값공유 X ,서로 독립적인 값을 가지는 복사  <br>
+📍 ... : 스프레드 오퍼레이터 라는 ES6문법(중괄호 대괄호 다 제거해주고 값을 복사한후 다시 중괄호에 담는거임 ) <br>
+	따라서, 별개의 array가 되는거임. <br>
 ### 💬버튼클릭시  '남자코트 추천' -> '여자코트 추천'으로 변경되게 하시오.
 ```
 
@@ -148,18 +152,19 @@ return(
 ```
 
 ### 📍리액트의 대원칙 : immutable data (직접 데이터를 수정하면 안된다.)
+
 📍 <Array,Object state데이터 수정 방법>
 - 일단 변경함수를 써야함
 - 변경함수( 대체할 데이터 )
 - state는 직접 건들지 말기. deep copy해서 그걸 건드세요.
 
-Q. 버튼을 누르면 제목들을 글자순 정렬?
--> 힌트) state순서만 정렬하면 div순서는 알아서 정렬 + 재렌더링 됨. 그러니 버튼을 눌렀을 때 글목록 array가 담긴 state를 한번 정렬해보시길. 
--> array 내의 아이템을 가나다 순으로 정렬하는 법을 모를땐 구글 검색 ㄱ
-1.수정하고 싶은 state의 deep/shallow 카피본을 하나 생성합니다.
-2. 카피본을 입맛에 맞게 수정합니다.
-3. 카피본을 state변경함수( )에 집어넣습니다.
-
+Q. 버튼을 누르면 제목들을 글자순 정렬? <br>
+-> 힌트) state순서만 정렬하면 div순서는 알아서 정렬 + 재렌더링 됨. 그러니 버튼을 눌렀을 때 글목록 array가 담긴 state를 한번 정렬해보시길. <br>
+-> array 내의 아이템을 가나다 순으로 정렬하는 법을 모를땐 구글 검색 ㄱ <br>
+1.수정하고 싶은 state의 deep/shallow 카피본을 하나 생성합니다.<br>
+2. 카피본을 입맛에 맞게 수정합니다.<br>
+3. 카피본을 state변경함수( )에 집어넣습니다.<br>
+<br>
 ```
 let [글제목, 글제목변경] = useState(['남자 코트 추천','강남 우동 맛집','올리브영 세일템 추천']);
 
@@ -193,9 +198,12 @@ return의 소괄호( )에다가 html을 쭉 담아주면 됌
 
 
 ### 모달창을 클릭하면 등장하도록 만드려면?
-JSX문법에 {변수명}쓰듯 사용할수 있는데,
-중괄호 안에 if문은 사용할수 없음.
-📌if 대신 사용가능한것이 삼항연산자!!
+
+JSX문법에 {변수명}쓰듯 사용할수 있는데, <br>
+중괄호 안에 if문은 사용할수 없음. <br>
+
+### 📌if 대신 사용가능한것이 삼항연산자!!
+
 ```
 { 1 < 3 ? console.log('맞아요') : console.log('틀려요') }
 { 조건식 ? 참일때 실행할 코드 : 거짓일때 실행할 코드 }
@@ -259,7 +267,8 @@ JSX 중괄호 내에 for 못넣습니다.
 반복문 쓰는 법
 { map( ) }
 
-📍array내에 모든 데이터에 똑같은 작업을 시켜주고 싶을 때 .map()
+### 📍array내에 모든 데이터에 똑같은 작업을 시켜주고 싶을 때 .map()
+
 ```
 
 var 어레이 = [2,3,4];
@@ -281,12 +290,11 @@ props : 자식이 부모의 stste를 가져다 쓰고 싶을 땐 말하고 쓰�
 1. <자식컴포넌트 작명={전송할 state명} />
 ```
 
-Q. 제목을 누를 때 각각 다른 모달창이 뜨게?
-UI만드는 법 :
+Q. 제목을 누를 때 각각 다른 모달창이 뜨게? <br>
+UI만드는 법 : <br>
 1. UI 와 관련된 중요 정보들을 state로 저장해놀고
 2. state에따라서 UI가 수정되게 만들면 됩니다.
 
-### 행 복사 단축키 : Alt ++ Shift + ↓
 
 ### 💙input다루기 : 사용자가 입력한 글을 변수에 저장하는 법
 📍사용자가 입력한 값은? e.target.value
@@ -363,19 +371,20 @@ class를 만들어두시면 class가 가지고 있는 데이터를 그대로 복
 -------------------------------------------------------------------------------------------------------------------
 ## 쇼핑몰 프로젝트
 
-작업하던것이 있다면 컨트롤+C눌러서 종료하고
+<br>
+작업하던것이 있다면 컨트롤+C눌러서 종료하고 <br>
 1. 작업폴더 에디터로 오픈 (여기서 난 react class)
 2. 터미널에 npx create-react-app shop
 3. shop 이라는 프로젝트 에디터로 오픈
-
-yarn이용하기
-구글에 yarn 1.2치고 들어가서 설치. (라이브러리 설치할때 유용한 툴.)
-npm run start 혹은 yarn설치후 프로젝트 만들었으면 yarn start 가능
-
-HTML/CSS 디자인 쌩코딩이 싫다면
-bootstrap이용하기 (getbootstrap.com)
-
-설치하는 튜토리얼보고 설치하면 됌.
+<br>
+yarn이용하기 <br>
+구글에 yarn 1.2치고 들어가서 설치. (라이브러리 설치할때 유용한 툴.) <br>
+npm run start 혹은 yarn설치후 프로젝트 만들었으면 yarn start 가능 <br>
+<br>
+HTML/CSS 디자인 쌩코딩이 싫다면 <br>
+bootstrap이용하기 (getbootstrap.com) <br>
+<br>
+설치하는 튜토리얼보고 설치하면 됌. <br>
 react경우는 reactbootstrap을 이용하는 경우가 많음. 
 React-bootstrap 설치하기
 터미널에 (윈도우나 맥에 스크립트사용할수없다면 앞에 sudo붙이고)
@@ -619,12 +628,12 @@ Link라는 속성 사용가능
 	
 ### 📌페이지 이동시키는 다른 방법
 	
-외워서 사용!
+외워서 사용!<br>
 1. useHistory라는 훅 import
 2. useHistory()훅 사용
-[상세내용]
-일단 import { useHistory }  from 'react-router-dom'
-리액트-라우터-돔에서 useHistory라는 라이브러리를 가져와서 사용할거기때문에 
+[상세내용]<br>
+일단 import { useHistory }  from 'react-router-dom'<br>
+리액트-라우터-돔에서 useHistory라는 라이브러리를 가져와서 사용할거기때문에 <br>
 ```
 let history = useHistory(); // useHistory를 변수에 담음
 ```
@@ -656,32 +665,33 @@ history.push('/')  // -> '/' 경로로 이동시켜주세요
 	
 1. 보낼이름={state이름}
 2. 하위컴포넌트에선 {props.보낸이름}
-<Detail />컴포넌트에 상품명 데이터바인딩좀 해봅시다.
-여깃 매우 중요한 질문:
+<Detail />컴포넌트에 상품명 데이터바인딩좀 해봅시다. <br>
+여깃 매우 중요한 질문:<br>
 Q. 그냥 애초에 shoes라는 state같은 걸 Detaile컴포넌트에다가 만들면 되는거 아닙니까? 그럼 props 귀찮게 안써도 될텐데.<br>
-A. 좋은방법입니다. 근데 React,Angular, Vue이런거 쓸 때 항상 염두에 두셔야하는게
-데이터는 항상 "위에서 아래로 흘러야합니다."
+A. 좋은방법입니다. 근데 React,Angular, Vue이런거 쓸 때 항상 염두에 두셔야하는게<br>
+데이터는 항상 "위에서 아래로 흘러야합니다."<br>
 상위텀포넌트가 중요 데이터를 다 가지고 있어야합니다. <br>
 그리고 하위컴포넌트는 데이터를 항상 props로 받아서 써야합니다. <br>
 왜냐면, 안그러면 데이터를 역방향으로 전달시킨다면 props보다 훨씬 귀찮은 문제들이 생기니까요.<br>
-그러니 state만들 땐 state를 필요로 하는 컴포넌트들 중 가장 최상위 컴포넌트에 보관해야합니다.
+그러니 state만들 땐 state를 필요로 하는 컴포넌트들 중 가장 최상위 컴포넌트에 보관해야합니다.<br>
 <br>
-보통, 중요한 데이터들은 App.js에 두고 가져다 쓰는것이 국.룰!임
-App컴포넌트에 보관하던지 혹은 redux파일에 보관해서 쓰기!
+보통, 중요한 데이터들은 App.js에 두고 가져다 쓰는것이 국.룰!임<br>
+App컴포넌트에 보관하던지 혹은 redux파일에 보관해서 쓰기!<br>
 ### 📌 URL활용 :id
+	
 ```
 <Route path="/detail/:id">  
 ``` 
-/:id 는 아무문자나 받겠다는 URL작명법. 
-:id 자리에 아무 문자나 입력하면 <Detail>컴포넌트를 보여주세요~입니다.
+/:id 는 아무문자나 받겠다는 URL작명법. <br>
+:id 자리에 아무 문자나 입력하면 <Detail>컴포넌트를 보여주세요~입니다.<br>
 1. id라는 부분은 함수 파라미터처럼 자유롭게 작명하면 됩니다. :id :num :a
 2. 파라미터는 2개 3개 몇개든 추가 사용가능 /detail/:id/:name 이런식도 가능
-
-
-이제 URL이 /detail/2든 /detail/3이든 디테일 텀포넌트가 보이도록 설정이 되었는데
-URL이 /detail/:id라면 상품 {props.shoes[:id자리에 있던 숫자].title} 가 되도록 가능한지!그것은 바로,
+<br>
+<br>
+이제 URL이 /detail/2든 /detail/3이든 디테일 텀포넌트가 보이도록 설정이 되었는데<br>
+URL이 /detail/:id라면 상품 {props.shoes[:id자리에 있던 숫자].title} 가 되도록 가능한지!그것은 바로,<br>
 import { useHistory }  from 'react-router-dom' 에 useParams를 추가<br>
-	
+<br>
 ### 📌라우터의 usePrams 훅
 
 ```
@@ -700,16 +710,16 @@ return(
 }
 
 ```
-shoes데이터의 순서가 바뀐다면 상세페이지도 이상해짐
-정렬기능을 실행하면 shoes라는 state가 변경됨
-[ Red Knit, White and Black, Grey Yordan ]
-그럼 이제/detail/0접속시 Red Keit가 뜨게?
+shoes데이터의 순서가 바뀐다면 상세페이지도 이상해짐 <br>
+정렬기능을 실행하면 shoes라는 state가 변경됨<br>
+[ Red Knit, White and Black, Grey Yordan ] <br>
+그럼 이제/detail/0접속시 Red Keit가 뜨게?<br>
 - 상품의 영구번호를 활용하자. id
-"shoes에서 0번째 순서의 타이틀을 가져와라~ "가 아닌
-"전체자료중에 영구번호 0을 가진 데이터의 제목~"
-
-현재shoes라는 상품데이터들 안엔 {id:0}이런 영구 번호가 있습니다.
-그럼 현재 /:id 자리에 입력한 값과 영구번호가 같은 {상품데이터}를 찾아서 데이터 바인딩해주면 되겠습니다.
+"shoes에서 0번째 순서의 타이틀을 가져와라~ "가 아닌 <br>
+"전체자료중에 영구번호 0을 가진 데이터의 제목~"<br>
+<br>
+현재shoes라는 상품데이터들 안엔 {id:0}이런 영구 번호가 있습니다.<br>
+그럼 현재 /:id 자리에 입력한 값과 영구번호가 같은 {상품데이터}를 찾아서 데이터 바인딩해주면 되겠습니다.<br>
 ```
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
@@ -734,17 +744,17 @@ filter()함수, 그냥 반복문 이런거 써도 상관 없음.
 3. return 오른쪽엔 조건식을 적을수 있습니다. 이게 참인 데이터만 새로운 변수에 저장해줍니다.
 4. 조건식엔 그리고 그걸 현재 URL의 /:id에 적힌 값과 상품의 영구번호 (상품.id)가 같은지 비교하고 있는겁니다.
 
-그래서 /detail.0으로 접속시 찾은 상품이라는 변수를 출력해보면 아마 영구번호가 id :0인 데이터가 나올겁니다.
-/detail.1로 접속시 찾은상품이라는 변수는 영구번호가 id : 1인 데이터일겁니다.
-그래서 찾은상품이라는 변수를 이용해서 상품면, 가격 HTML부분에 데이터바인딩했을 뿐입니다.
-이렇게하면 성공!
-
-지금은 프론트엔드에서 모든 데이터를 다루고있어 어려운 + 반복스러운 find()함수를 사용한 것이지만
-실제 개발할 뗀 그냥 서버에 id:0인 상품데이터를 Ajax로 요청하는 경우가 많을것입니다.
-그럼 저렇게 find()어쩌구를 쓰는게 아니라 ajax요청하는 코드가 들어가있겠고
-ajax요청을 성공하면 {} 중괄호 안에 깔끔하게 상품데이터가 하나만 딱 들어올 것 같군요.
-
-
+그래서 /detail.0으로 접속시 찾은 상품이라는 변수를 출력해보면 아마 영구번호가 id :0인 데이터가 나올겁니다.<br>
+/detail.1로 접속시 찾은상품이라는 변수는 영구번호가 id : 1인 데이터일겁니다.<br>
+그래서 찾은상품이라는 변수를 이용해서 상품면, 가격 HTML부분에 데이터바인딩했을 뿐입니다.<br>
+이렇게하면 성공!<br>
+<br>
+지금은 프론트엔드에서 모든 데이터를 다루고있어 어려운 + 반복스러운 find()함수를 사용한 것이지만<br>
+실제 개발할 뗀 그냥 서버에 id:0인 상품데이터를 Ajax로 요청하는 경우가 많을것입니다.<br>
+그럼 저렇게 find()어쩌구를 쓰는게 아니라 ajax요청하는 코드가 들어가있겠고<br>
+ajax요청을 성공하면 {} 중괄호 안에 깔끔하게 상품데이터가 하나만 딱 들어올 것 같군요.<br>
+<br>
+<br>
 ### 📌 styled-cpmponents를 이용한 class없는 CSS스타일링
 
 - 실제로 개발하다보면 컴포넌트양이 많아져서 CSS작성 고민이 많아짐
@@ -994,6 +1004,7 @@ useEffect(()=>{
 ```
 ### 📌 Ajax
 - 서버에 새로고침없이 요청을 할 수 있게 도와줌
+	
 	
 🌟Alt + shift + ↓ : 줄복사     <br>
 🌟 ctrl + K -> ctrl + C : 드래그전체 /주석  <br>

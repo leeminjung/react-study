@@ -677,6 +677,7 @@ A. 좋은방법입니다. 근데 React,Angular, Vue이런거 쓸 때 항상 염�
 <br>
 보통, 중요한 데이터들은 App.js에 두고 가져다 쓰는것이 국.룰!임<br>
 App컴포넌트에 보관하던지 혹은 redux파일에 보관해서 쓰기!<br>
+	
 ### 📌 URL활용 :id
 	
 ```
@@ -692,6 +693,7 @@ App컴포넌트에 보관하던지 혹은 redux파일에 보관해서 쓰기!<br
 URL이 /detail/:id라면 상품 {props.shoes[:id자리에 있던 숫자].title} 가 되도록 가능한지!그것은 바로,<br>
 import { useHistory }  from 'react-router-dom' 에 useParams를 추가<br>
 <br>
+
 ### 📌라우터의 usePrams 훅
 
 ```
@@ -720,6 +722,7 @@ shoes데이터의 순서가 바뀐다면 상세페이지도 이상해짐 <br>
 <br>
 현재shoes라는 상품데이터들 안엔 {id:0}이런 영구 번호가 있습니다.<br>
 그럼 현재 /:id 자리에 입력한 값과 영구번호가 같은 {상품데이터}를 찾아서 데이터 바인딩해주면 되겠습니다.<br>
+	
 ```
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
@@ -732,10 +735,13 @@ function Detail(props){
 return( ... )
 }
 ```
+	
 =
+	
 ```
 let 찾은상품 = props.shoes.find(x => x.id == id);
 ```
+	
 💙find()라는 ES6 신문법이 있습니다. Array안에서 원하는 자료를 찾고싶을 때 사용합니다.
 filter()함수, 그냥 반복문 이런거 써도 상관 없음.
 
@@ -755,6 +761,7 @@ filter()함수, 그냥 반복문 이런거 써도 상관 없음.
 ajax요청을 성공하면 {} 중괄호 안에 깔끔하게 상품데이터가 하나만 딱 들어올 것 같군요.<br>
 <br>
 <br>
+	
 ### 📌 styled-cpmponents를 이용한 class없는 CSS스타일링
 
 - 실제로 개발하다보면 컴포넌트양이 많아져서 CSS작성 고민이 많아짐
@@ -785,14 +792,16 @@ styled-components 유용한 문법하나 더 <br>
 ```
 ```
 ex) `color : ${ props => props.색상 }`
-
+	
 <제목 색상={'red'}> Detail </제목>
 또는 <제목 색상="red"> Detail </제목>
 ```
 사실상 class짓거나 style넣으면 되는걸 굳이.. 한다 생각되긴하지만 <br>
 가장큰 장점: 컴포넌트 많아지면 class겹칠 일이 줄어들음
 <br>
+	
 ### 📌아니면 CSS대신 SASS를 쓰자! (SASS 총정리)
+	
 : CSS를 프로그래밍언어스럽게 작성가능한 Preprocesssor <br>
 설치하는 방법 + 간단한 문법 <br>
 [설치방법] <br>
@@ -805,7 +814,9 @@ npm install node-sass
 	
 SASS문법을 쓰고싶다면 .css파일을 .scss로 바꾸기
 그리고 import './Detail.scss'
+	
 ### ❤️SASS문법
+	
 - 변수에 데이터를 저장해서 쓰자
 - @import 파일경로
 - 셀렉터 대신 쓰는 nesting
@@ -903,12 +914,14 @@ div.container {
 
 ```
 ### 📌<Link>태그 에러 해결하기
+	
 ```
 <Nav.Link ><Link to="/detail">Detail</Link></Nav.Link>를 
 <Nav.Link as={Link}  to="/">Detail</Nav.Link> 이런식으로 쓰면 에러해결. 
 ```
 
 ### 📌Lifecycle Hook
+	
 🌟Hook으로 컴포넌트의 인생 중간중간에 뭔가 명령을 줄 수 있음 <br>
 e.g) <Detail>등장 전에 이것좀 해주세요 <br>
 (원래는 class컴포넌트들만 사용가능) <br>
@@ -926,6 +939,7 @@ class Detail2 extends React.Component {
 }
 ```
 ### 📌useEffect 훅
+	
 컴포넌트가 mount 되었을때 <br>
 컴포넌트가 update 될 때 <br>
 특정 코드를 실행할 수 있음 <br>
@@ -989,8 +1003,8 @@ useEffect가 입력할때마다 실행이되는데 처음 렌더링할때만 실
 // ,[alert] <- useState인 alert라는 state가 변경될때만 useEffect 실행하라는 뜻
 ```
 
-💙useEffect는 원래 업데이트될 때 항상 실행됩니다. 실행조건을 넣어서 특정 state가 변경될깨만 실행해주세요~ 할수있음
-💙 그 실행조건(state)이 useEffect코드보다 위에 있어야함!!
+💙useEffect는 원래 업데이트될 때 항상 실행됩니다. 실행조건을 넣어서 특정 state가 변경될깨만 실행해주세요~ 할수있음 <br>
+💙 그 실행조건(state)이 useEffect코드보다 위에 있어야함!! <br>
 
 ### 📌 setTimeout 이런거 쓸 때 주의점
 - 타이머 해제 스킬 return 뒤에는 컴포넌트가 사라질때 쓰는건데 안전하게 타이머 해제를 해놓기.그래야 코드가 나중에 꼬이지 않음 <br>
@@ -1003,7 +1017,9 @@ useEffect(()=>{
   },[]);
 ```
 ### 📌 Ajax
-- 서버에 새로고침없이 요청을 할 수 있게 도와줌
+	
+- 서버에 새로고침없이 요청을 할 수 있게 도와줌 <br>
+
 	
 	
 🌟Alt + shift + ↓ : 줄복사     <br>

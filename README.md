@@ -1039,7 +1039,7 @@ GET/POST 요청 할 때마다 항상 새로고침이 됨(원래그럼)<br>
 ```
 import axios from 'axios';
 ```
-### 📌 Axios 연결
+### 📌22-04-28
 	
 	
 🌟Alt + shift + ↓ : 줄복사     <br>
